@@ -1,4 +1,4 @@
-﻿# EchoBot1
+﻿# SupportBot
 
 Bot Framework v4 echo bot sample.
 
