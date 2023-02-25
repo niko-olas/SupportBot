@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+SupportBot/.vs
+SupportBot/EchoBot1/obj
+SupportBot/EchoBot1/bin
