@@ -23,18 +23,30 @@ namespace EchoBot1.Bots
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
+
             // Extract the text from the message activity the user sent.
             var text = turnContext.Activity.Text.ToLowerInvariant();
 
             // Take the input from the user and create the appropriate response.
             var responseText = ProcessInput(text);
 
-            // Respond to the user.
-            await turnContext.SendActivityAsync(responseText, cancellationToken: cancellationToken);
+            await turnContext.SendActivitiesAsync(
+            new Activity[] {
+                new Activity { Type = ActivityTypes.Typing },
+                new Activity { Type = "delay", Value= 3000 },
+                MessageFactory.Text(responseText),
+            },
+            cancellationToken);
 
             await SendSuggestedActionsAsync(turnContext, cancellationToken);
         }
 
+       
+        
+        
+        
+        
+        
         private static async Task SendWelcomeMessageAsync(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             foreach (var member in turnContext.Activity.MembersAdded)
